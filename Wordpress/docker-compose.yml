@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  php:
+    container_name: php-server
+    build: .
+    volumes:
+      - ./C:\Users\Lenovo\OneDrive\Dokumen\Semester 6\Sisi Server\Wordpress:/var/www/html
+    ports:
+      - 8080:80
+    depends_on:
+      - mysql
+  mysql:
+    container_name: mysql-server
+    image: mysql:latest
+
+    environment:
+      MYSQL_ROOT_PASSWORD: sandirahasia
+      MYSQL_DATABASE: wordpress_dp
+      MYSQL_USER: wordpress_user
+      MYSQL_PASSWORD: sandi_wordpress
+    volumes:
+      - ./mysql_data:/var/lib/mysql
+  redis:
+    container_name: redis-server
+    image: redis:latest
